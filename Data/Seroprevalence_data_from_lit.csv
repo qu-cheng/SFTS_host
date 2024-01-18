@@ -1,0 +1,53 @@
+SurveyID,References,Survey year,Locations,Host species,n_positive,n,prev,N
+1,Zhang 2011,2010,"Yixing, Liyang, Lishui, Jiangning, Xuyi, and Donghai counties of Jiangsu Province",Goat/sheep,49,85,57.65,303500
+1,Zhang 2011,2010,"Yixing, Liyang, Lishui, Jiangning, Xuyi, and Donghai counties of Jiangsu Province",Cattle,29,90,32.22,67100
+1,Zhang 2011,2010,"Yixing, Liyang, Lishui, Jiangning, Xuyi, and Donghai counties of Jiangsu Province",Poultry,3,359,0.84,16431240
+1,Zhang 2011,2010,"Yixing, Liyang, Lishui, Jiangning, Xuyi, and Donghai counties of Jiangsu Province",Dog,8,125,6.4,298478
+1,Zhang 2011,2010,"Yixing, Liyang, Lishui, Jiangning, Xuyi, and Donghai counties of Jiangsu Province",Pig,12,225,5.33,1310400
+1,Zhang 2011,2010,"Yixing, Liyang, Lishui, Jiangning, Xuyi, and Donghai counties of Jiangsu Province",Rodent,0,47,0,23567550
+2,Niu 2013,2011,"Laizhou Prefecture, Shandong Province",Goat/sheep,142,205,69.27,63700
+2,Niu 2013,2011,"Laizhou Prefecture, Shandong Province",Cattle,233,433,53.81,14700
+2,Niu 2013,2011,"Laizhou Prefecture, Shandong Province",Poultry,149,261,57.09,4700000
+2,Niu 2013,2011,"Laizhou Prefecture, Shandong Province",Dog,70,182,38.46,132000
+2,Niu 2013,2011,"Laizhou Prefecture, Shandong Province",Pig,3,426,0.7,498000
+3,Niu 2013,2011,"Penglai Prefecture, Shandong Province",Goat/sheep,186,267,69.66292135,25000
+3,Niu 2013,2011,"Penglai Prefecture, Shandong Province",Cattle,276,409,67.48166259,6900
+3,Niu 2013,2011,"Penglai Prefecture, Shandong Province",Poultry,101,266,37.96992481,8220000
+3,Niu 2013,2011,"Penglai Prefecture, Shandong Province",Dog,66,177,37.28813559,126000
+3,Niu 2013,2011,"Penglai Prefecture, Shandong Province",Pig,23,413,5.569007264,228000
+4,Ding 2014,2011,"Laizhou Prefecture, Shandong Province",Goat/sheep,83,111,74.77,63700
+4,Ding 2014,2011,"Laizhou Prefecture, Shandong Province",Cattle,105,184,57.07,14700
+4,Ding 2014,2011,"Laizhou Prefecture, Shandong Province",Poultry,61,117,52.14,4700000
+4,Ding 2014,2011,"Laizhou Prefecture, Shandong Province",Dog,19,53,35.85,132000
+4,Ding 2014,2011,"Laizhou Prefecture, Shandong Province",Pig,0,176,0,498000
+5,Xu 2014,2010-2011,"Wuxi Prefecture, Jiangsu Province",Goat/sheep,5,74,6.76,37300
+5,Xu 2014,2010-2011,"Wuxi Prefecture, Jiangsu Province",Poultry,2,157,1.27,7112233
+5,Xu 2014,2010-2011,"Wuxi Prefecture, Jiangsu Province",Dog,0,15,0,155560
+5,Xu 2014,2010-2011,"Wuxi Prefecture, Jiangsu Province",Pig,0,91,0,522300
+5,Xu 2014,2010-2011,"Wuxi Prefecture, Jiangsu Province",Rodent,2,94,2.13,12752000
+5,Xu 2014,2010-2011,"Wuxi Prefecture, Jiangsu Province",Hedgehog,0,13,0,370160
+6,Du 2014,2012,Shangcheng and Guangshan counties of Henan Province,Goat/sheep,45,59,76.27,112100
+6,Du 2014,2012,Shangcheng and Guangshan counties of Henan Province,Cattle,63,63,100,119300
+6,Du 2014,2012,Shangcheng and Guangshan counties of Henan Province,Dog,30,40,75,49510
+6,Du 2014,2012,Shangcheng and Guangshan counties of Henan Province,Pig,2,56,3.57,357000
+6,Du 2014,2012,Shangcheng and Guangshan counties of Henan Province,Rodent,1,94,1.06,2265600
+7,Li 2014,2012-2013,"Yixing, Liyang, Lishui, Jiangning, Xuyi, and Donghai counties of Jiangsu Province",Goat/sheep,185,277,66.79,309200
+7,Li 2014,2012-2013,"Yixing, Liyang, Lishui, Jiangning, Xuyi, and Donghai counties of Jiangsu Province",Cattle,62,220,28.18,70300
+7,Li 2014,2012-2013,"Yixing, Liyang, Lishui, Jiangning, Xuyi, and Donghai counties of Jiangsu Province",Poultry,8,621,1.29,26203833
+7,Li 2014,2012-2013,"Yixing, Liyang, Lishui, Jiangning, Xuyi, and Donghai counties of Jiangsu Province",Dog,23,311,7.4,302874
+7,Li 2014,2012-2013,"Yixing, Liyang, Lishui, Jiangning, Xuyi, and Donghai counties of Jiangsu Province",Pig,17,365,4.66,1465200
+7,Li 2014,2012-2013,"Yixing, Liyang, Lishui, Jiangning, Xuyi, and Donghai counties of Jiangsu Province",Rodent,38,872,4.36,23914654
+7,Li 2014,2012-2013,"Yixing, Liyang, Lishui, Jiangning, Xuyi, and Donghai counties of Jiangsu Province",Hedgehog,2,75,2.67,1121534
+8,Tan 2015,2010-2011,"Yixing County, Jiangsu Province",Goat/sheep,4,29,13.79,21000
+8,Tan 2015,2010-2011,"Yixing County, Jiangsu Province",Poultry,2,81,2.47,2220000
+8,Tan 2015,2010-2011,"Yixing County, Jiangsu Province",Dog,0,15,0,38042
+8,Tan 2015,2010-2011,"Yixing County, Jiangsu Province",Pig,0,90,0,195000
+9,Huang 2019,2016-2018,Pingqiao District and Xin County of Henan Province,Goat/sheep,53,76,69.74,100900
+9,Huang 2019,2016-2018,Pingqiao District and Xin County of Henan Province,Cattle,47,48,97.92,31400
+9,Huang 2019,2016-2018,Pingqiao District and Xin County of Henan Province,Poultry,46,187,24.6,5830600
+9,Huang 2019,2016-2018,Pingqiao District and Xin County of Henan Province,Dog,30,44,68.18,41350
+9,Huang 2019,2016-2018,Pingqiao District and Xin County of Henan Province,Pig,2,63,3.17,442200
+9,Huang 2019,2016-2018,Pingqiao District and Xin County of Henan Province,Rodent,4,52,7.69,2061600
+9,Huang 2019,2016-2018,Pingqiao District and Xin County of Henan Province,Hedgehog,6,15,40,275440
+9,Huang 2019,2016-2018,Pingqiao District and Xin County of Henan Province,Weasel,41,45,91.11,9812
+9,Huang 2019,2016-2018,Pingqiao District and Xin County of Henan Province,Hare,46,73,63.01,102601
