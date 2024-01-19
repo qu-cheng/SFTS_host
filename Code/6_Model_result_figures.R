@@ -416,7 +416,7 @@ original.species.R0 <- passes.final.ID %>%
   gather(HostName, "R0", R0:Weasel) %>%
   group_by(HostName) %>%
   summarise(R0.median = median(R0), R0.low = quantile(R0, 0.025), R0.high = quantile(R0, 0.975)) %>%
-  mutate(Without.Host = "All",
+  mutate(Without.Host = "Full dataset",
          HostName = ifelse(HostName == "R0", "Overall", HostName))
 
 
@@ -469,23 +469,49 @@ for(i in 1:9)
   all.result <- rbind(all.result, current.result)
 }
 
-all.result %>%
+
+
+all.result <- all.result %>%
   mutate(HostName = ifelse(HostName == "R0", "Overall", HostName)) %>%
   rbind(original.species.R0) %>%
-  mutate(Without.Host = factor(Without.Host, levels = c("All", "w/o goat/sheep", "w/o cattle", "w/o poultry", "w/o dog", "w/o pig", "w/o rodent", "w/o hedgehog", "w/o weasel", "w/o hare")),
-         HostName = factor(HostName, levels = c("Overall", "Goat/sheep", "Cattle", "Poultry", "Dog", "Pig", "Rodent", "Hedgehog", "Weasel", "Hare"))) %>%
+  mutate(Without.Host = factor(Without.Host, levels = c("Full dataset", "w/o goat/sheep", "w/o cattle", "w/o poultry", "w/o dog", "w/o pig", "w/o rodent", "w/o hedgehog", "w/o weasel", "w/o hare")),
+         HostName = factor(HostName, levels = c("Overall", "Goat/sheep", "Cattle", "Poultry", "Dog", "Pig", "Rodent", "Hedgehog", "Weasel", "Hare"))) 
+
+
+Fig6A <- all.result %>%
+  filter(HostName == "Overall") %>%
   ggplot(aes(x = HostName, y = R0.median, ymin = R0.low, ymax = R0.high, col = Without.Host)) +
   geom_point(position = position_dodge(0.6)) +
   geom_errorbar(width = 0.2, position = position_dodge(0.6)) +
   theme_cowplot() +
   scale_color_manual(values = c("black", ggthemes_data$tableau$`color-palettes`$regular$`Tableau 10`$value[1:9])) +
-  ylab(expression(R[0]*" (or R"[0*i]*")")) +
+#  xlab(expression("Overall "*R[0])) +
+  ylab(expression(R[0])) +
+  xlab("") +
+  guides(col = FALSE) +
+  ggtitle(expression("A.Overall "*R[0])) +
   theme(strip.background = element_blank(),
         strip.text = element_text(hjust = 0, face = "bold"),
-        legend.position = c(0.27, 0.95)) +
-  xlab("") +
+        legend.position = c(0.27, 0.95))+
+  ylim(0, 2.1)
+
+
+Fig6B <- all.result %>%
+  filter(HostName != "Overall") %>%
+  ggplot(aes(x = HostName, y = R0.median, ymin = R0.low, ymax = R0.high, col = Without.Host)) +
+  geom_point(position = position_dodge(0.6)) +
+  geom_errorbar(width = 0.2, position = position_dodge(0.6)) +
+  theme_cowplot() +
+  scale_color_manual(values = c("black", ggthemes_data$tableau$`color-palettes`$regular$`Tableau 10`$value[1:9])) +
+  #  xlab(expression("Overall "*R[0])) +
+  ylab(expression(R["0i"])) +
+  xlab(expression(R["0i"]*" for")) +
+  ggtitle(expression("B.Species-level "*R["0i"])) +
+  theme(strip.background = element_blank(),
+        strip.text = element_text(hjust = 0, face = "bold"),
+        legend.position = c(0.05, 0.95))+
+  guides(col = guide_legend(ncol = 5)) +
   labs(col = "") +
-  guides(col = guide_legend(ncol = 5))
-ggsave("../Figures/Fig6_missing_host.pdf", width = 10, height = 5)
+  ylim(0, 2.1)
 
-
+save_plot("../Figures/Fig6_missing_host.pdf", plot_grid(Fig6A, Fig6B, rel_widths = c(0.2, 0.9)), base_width = 10, base_height = 5)
