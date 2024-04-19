@@ -1,6 +1,6 @@
 source("0_Library_and_functions.R")
 
-#================== Figure 2 ===========================
+#================== Figure 1 ===========================
 #===== map ======
 register_stadiamaps("68605a8f-cdbf-4488-a1c7-a865c1965715", write = FALSE)
 map <- get_stadiamap(c(bottom = 30, left = 112.5, top = 38, right = 123.5), source="stadia", col = "bw", zoom = 7)
@@ -11,7 +11,7 @@ Location.dat <- Location.dat[sample(1:nrow(Location.dat), nrow(Location.dat)),] 
 
 
 jitter.width = 0.7
-Fig2A <- ggmap(map) + 
+Fig1A <- ggmap(map) + 
   geom_quasirandom(data = Location.dat, aes(x = Long, y = Lat, col = Ref), size = 5, width = jitter.width) +
   geom_text(data = Location.dat, aes(x = Long, y = Lat, label = LocationID), col = "white",
             position = position_quasirandom(width = jitter.width), size = 2.5) +
@@ -40,7 +40,7 @@ table(prev.data$Host.species)
 
 
 # heatmap version
-Fig2B <- prev.data %>%
+Fig1B <- prev.data %>%
   mutate(Host.species = factor(Host.species, levels = (c("Goat/sheep", "Cattle", "Poultry", "Dog", "Pig", "Rodent", "Hedgehog", "Weasel", "Hare"))),
          Survey.ID = as.factor(SurveyID),
          Survey.ID = factor(Survey.ID, levels = 9:1)) %>%
@@ -67,7 +67,7 @@ Fig2B <- prev.data %>%
         legend.title = element_text(size = 8)) 
 
 
-save_plot("../Figures/Fig2.pdf",plot_grid(Fig2A, Fig2B, rel_widths = c(0.5, 0.4), labels = c("A", "B"), label_size = 14), base_width = 8, base_height = 4.3)
+save_plot("../Figures/Fig1.pdf",plot_grid(Fig1A, Fig1B, rel_widths = c(0.5, 0.4), labels = c("A", "B"), label_size = 14), base_width = 8, base_height = 4.3)
 
 
 
