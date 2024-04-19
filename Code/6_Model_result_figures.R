@@ -10,7 +10,7 @@ Animal_prev <- read.csv("../Data/Seroprevalence_data_from_lit.csv") %>%
 
 
 #============================================================================
-#                         Figure 3: Overall R0
+#                         Figure 2: Overall R0
 #============================================================================
 all.passes <- read.csv("2_model_runs/Results/Passes_1000.csv")                     # read in 1000 passes for each survey
 passes.final.ID <- read.csv("2_model_runs/Results/Passes_1000_resampledID.csv")    # read the resampled weights
@@ -28,7 +28,7 @@ overall.R0 <- passes.final.ID %>%
          R0 = 3.5)   # for adding the text in the figure to the correct place
 
 
-Fig3A <- passes.final.ID %>%
+Fig2A <- passes.final.ID %>%
   left_join(all.passes %>%
               select(SurveyID, ID, R0) %>%
               unique()) %>%
@@ -56,7 +56,7 @@ Fig3A <- passes.final.ID %>%
 
 
 #========== Overall R0 with animal prev ============
-Fig3B <- Animal_prev %>%
+Fig2B <- Animal_prev %>%
   select(SurveyID, Host.species, prev, prev_low, prev_high) %>%
   left_join(passes.final.ID %>%
               left_join(all.passes %>%
@@ -80,13 +80,13 @@ Fig3B <- Animal_prev %>%
   scale_y_continuous(limits = c(0, 100)) +
   guides(fill = FALSE, col = FALSE)
 
-save_plot("../Figures/Fig3_overall_R0.pdf", plot_grid(Fig3A, Fig3B, rel_widths = c(0.45, 1.1), labels = c("A", "B"), label_size = 14), base_width = 9, base_height = 6)
+save_plot("../Figures/Fig2_overall_R0.pdf", plot_grid(Fig2A, Fig2B, rel_widths = c(0.45, 1.1), labels = c("A", "B"), label_size = 14), base_width = 9, base_height = 6)
 
 
 
 
 #============================================================================
-#                           Figure 4: Species-level R0i
+#                           Figure 3: Species-level R0i
 #============================================================================
 # estimate R0 for the larger gray circles
 node.set1 <- passes.final.ID %>%
@@ -175,10 +175,49 @@ node.set1 %>%
   geom_node_label(data = node.set1.center.coord, aes(x = x, y = y, label = SurveyID), alpha = 0.7, label.padding = unit(0.2, "lines"), size = 6) +
   labs(fill = "") +
   theme(text = element_text(size = 16))
-ggsave("../Figures/Fig4_species_R0i.pdf", width = 8, height = 6)
+ggsave("../Figures/Fig3_species_R0i.pdf", width = 8, height = 6)
 
 
 
+
+
+
+
+
+
+#============================================================================
+#                   Determinants of  R0i - RF figure
+#============================================================================
+RF.result <- read.csv("3_Parameter_permutation/3_6_RF_importance.csv")
+
+Fig.sens <- RF.result %>%
+  group_by(variable) %>%
+  summarise(importance.median = median(importance), low = quantile(importance, 0.025), high = quantile(importance, 0.975)) %>%
+  ggplot(
+    aes(
+      x = reorder(variable, importance.median),
+      y = importance.median,
+      fill = importance.median
+    )
+  ) +
+  geom_bar(stat = "identity", position = "dodge") +
+  geom_errorbar(aes(ymin = low, ymax = high), width = 0.15) +
+  coord_flip() +
+  ylab("Permutation importance score") +
+  xlab("") +
+  guides(fill = "none") +
+  theme_cowplot() +
+  scale_fill_continuous_tableau() +
+  scale_x_discrete(labels = c("beta" = expression(beta[i]),
+                              "chi_H" = expression(chi[i]),
+                              "phi" = expression(phi),
+                              "mu_H" = expression(mu[i]),
+                              "sigma_H" = expression(sigma[i]),
+                              "mu_T" = expression(mu[T]),
+                              "gamma_H" = expression(gamma[i]),
+                              "v_H" = expression(nu[i])))
+
+save_plot("../Figures/FigS3_RF_importance.pdf", Fig.sens, base_height = 4, base_width = 8)
 
 
 
@@ -267,50 +306,10 @@ for(i in 1:9)
     scale_x_continuous(breaks = scales::pretty_breaks(4), limits = c(0, 10))
   
   
-  ggsave(paste("../Figures/FigS3_sensitivity_survey", i, ".pdf", sep = ""), width = 14, height = 10)
+  ggsave(paste("../Figures/FigS4_sensitivity_survey", i, ".pdf", sep = ""), width = 14, height = 10)
 }
 
 
-
-
-
-
-
-
-
-#============================================================================
-#                   Determinants of  R0i - RF figure
-#============================================================================
-RF.result <- read.csv("3_Parameter_permutation/3_6_RF_importance.csv")
-
-Fig.sens <- RF.result %>%
-  group_by(variable) %>%
-  summarise(importance.median = median(importance), low = quantile(importance, 0.025), high = quantile(importance, 0.975)) %>%
-  ggplot(
-    aes(
-      x = reorder(variable, importance.median),
-      y = importance.median,
-      fill = importance.median
-    )
-  ) +
-  geom_bar(stat = "identity", position = "dodge") +
-  geom_errorbar(aes(ymin = low, ymax = high), width = 0.15) +
-  coord_flip() +
-  ylab("Permutation importance score") +
-  xlab("") +
-  guides(fill = "none") +
-  theme_cowplot() +
-  scale_fill_continuous_tableau() +
-  scale_x_discrete(labels = c("beta" = expression(beta[i]),
-                              "chi_H" = expression(chi[i]),
-                              "phi" = expression(phi),
-                              "mu_H" = expression(mu[i]),
-                              "sigma_H" = expression(sigma[i]),
-                              "mu_T" = expression(mu[T]),
-                              "gamma_H" = expression(gamma[i]),
-                              "v_H" = expression(nu[i])))
-
-save_plot("../Figures/Fig5_RF_importance.pdf", Fig.sens, base_height = 4, base_width = 8)
 
 
 
@@ -370,7 +369,7 @@ all.result %>%
   ylab(expression("Overall R"[0])) +
   xlab("Scaling parameter") +
   scale_color_tableau(palette = "Tableau 20")
-ggsave("../Figures/FigS4_optimal_intervention.pdf", width = 8, height = 7.5)
+ggsave("../Figures/FigS5_optimal_intervention.pdf", width = 8, height = 7.5)
 
 
 
@@ -478,7 +477,7 @@ all.result <- all.result %>%
          HostName = factor(HostName, levels = c("Overall", "Goat/sheep", "Cattle", "Poultry", "Dog", "Pig", "Rodent", "Hedgehog", "Weasel", "Hare"))) 
 
 
-Fig6A <- all.result %>%
+Fig4A <- all.result %>%
   filter(HostName == "Overall") %>%
   ggplot(aes(x = HostName, y = R0.median, ymin = R0.low, ymax = R0.high, col = Without.Host)) +
   geom_point(position = position_dodge(0.6)) +
@@ -496,7 +495,7 @@ Fig6A <- all.result %>%
   ylim(0, 2.1)
 
 
-Fig6B <- all.result %>%
+Fig4B <- all.result %>%
   filter(HostName != "Overall") %>%
   ggplot(aes(x = HostName, y = R0.median, ymin = R0.low, ymax = R0.high, col = Without.Host)) +
   geom_point(position = position_dodge(0.6)) +
@@ -514,4 +513,4 @@ Fig6B <- all.result %>%
   labs(col = "") +
   ylim(0, 2.1)
 
-save_plot("../Figures/Fig6_missing_host.pdf", plot_grid(Fig6A, Fig6B, rel_widths = c(0.2, 0.9)), base_width = 10, base_height = 5)
+save_plot("../Figures/Fig4_missing_host.pdf", plot_grid(Fig4A, Fig4B, rel_widths = c(0.2, 0.9)), base_width = 10, base_height = 5)
